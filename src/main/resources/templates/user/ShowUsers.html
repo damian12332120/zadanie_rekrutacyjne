@@ -32,7 +32,7 @@
        class="btn btn-info col-3">
         Wyświetl użytkowników posortowanych po wieku
     </a>
-    <a th:href="@{/home/page}"
+    <a th:href="@{/userData/oldestUserWithTelephone}"
        class="btn btn-info col-3">
         Wyświetl najstarszego użytkownika który posiada nr. telefonu
     </a>
@@ -49,6 +49,30 @@
        class="btn btn-info col-3">
         Usuń wszytkich użytkowników
     </a>
+    <hr>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Data Urodzenia</th>
+            <th>Telefon</th>
+        </tr>
+        </thead>
+
+        <tr th:each="temp : ${users}">
+
+            <td th:text="${temp.id}"></td>
+            <td th:text="${temp.firstName}"></td>
+            <td th:text="${temp.lastName}"></td>
+            <td th:text="${temp.birthDay}"></td>
+            <td th:text="${temp.phoneNo}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <span th:if="${users.isEmpty()}">Nie ma użytkowników.</span>
 
 </div>
 

@@ -32,7 +32,7 @@
        class="btn btn-info col-3">
         Wyświetl użytkowników posortowanych po wieku
     </a>
-    <a th:href="@{/home/page}"
+    <a th:href="@{/userData/oldestUserWithTelephone}"
        class="btn btn-info col-3">
         Wyświetl najstarszego użytkownika który posiada nr. telefonu
     </a>
@@ -46,10 +46,13 @@
         Usuń pojedyńczego użytkownika
     </a>
     <a th:href="@{/userData/deleteAll}"
-       class="btn btn-info col-3">
+    class="btn btn-info col-3">
         Usuń wszytkich użytkowników
     </a>
+    <hr>
 
+
+    <h3 th:text="użytkownik+' '+${user}"></h3>
 </div>
 
 </body>

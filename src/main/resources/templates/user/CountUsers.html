@@ -17,6 +17,7 @@
 <div class="container">
 
     <h3>Jesteś w zakładce dane użytkowników. Dostępne opcje:</h3>
+
     <hr>
     <a th:href="@{/home/page}"
        class="btn btn-info col-3">
@@ -32,7 +33,7 @@
        class="btn btn-info col-3">
         Wyświetl użytkowników posortowanych po wieku
     </a>
-    <a th:href="@{/home/page}"
+    <a th:href="@{/userData/oldestUserWithTelephone}"
        class="btn btn-info col-3">
         Wyświetl najstarszego użytkownika który posiada nr. telefonu
     </a>
@@ -50,7 +51,12 @@
         Usuń wszytkich użytkowników
     </a>
 
+
+<hr>
+    <h3 th:text="Liczba+' '+użytkowników+' '+${count}"></h3>
 </div>
+
+
 
 </body>
 

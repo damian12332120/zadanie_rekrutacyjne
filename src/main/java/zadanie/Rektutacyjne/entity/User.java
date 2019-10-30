@@ -10,24 +10,31 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
-//@Entity
+@Entity
 public class User {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @CsvBindByName
-    //@NotEmpty(message = "login nie może być pusty")
-    private String first_name;
-  //  @NotEmpty(message = "login nie może być pusty")
-    @CsvBindByName
-    private String last_name;
-  //  @NotEmpty(message = "login nie może być pusty")
-    @CsvBindByName
-    private LocalDate birth_date;
-  //  @Pattern(regexp = "[0-9]{9}")
-    @CsvBindByName
-    private Long phone_no;
 
+    @NotEmpty(message = "login nie może być pusty")
+    @CsvBindByName
+    private String firstName;
+
+    @NotEmpty(message = "login nie może być pusty")
+    @CsvBindByName
+    private String lastName;
+
+    @NotEmpty(message = "login nie może być pusty")
+    @CsvBindByName
+    private LocalDate birthDay;
+
+    @Pattern(regexp = "[0-9]{9}")
+    @CsvBindByName
+    private String phoneNo;
+
+
+    public User() {
+    }
 
     public int getId() {
         return id;
@@ -37,35 +44,47 @@ public class User {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public LocalDate getBirth_date() {
-        return birth_date;
+    public LocalDate getBirthDay() {
+        return birthDay;
     }
 
-    public void setBirth_date(LocalDate birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthDay(LocalDate birthDay) {
+        this.birthDay = birthDay;
     }
 
-    public Long getPhone_no() {
-        return phone_no;
+    public String getPhoneNo() {
+        return phoneNo;
     }
 
-    public void setPhone_no(Long phone_no) {
-        this.phone_no = phone_no;
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+
+    @Override
+    public String toString() {
+        return
+                "id=" + id +
+                ", firstName='" + firstName +
+                ", lastName='" + lastName +
+                ", birthDay=" + birthDay +
+                ", phoneNo='" + phoneNo
+                ;
     }
 }

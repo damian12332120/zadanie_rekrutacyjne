@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/home")
 public class MainPage {
 
+
+    public MainPage() {
+    }
+
     @GetMapping("/page")
     public String showMainPage(Model theModel) {
         return "main/MainPage";

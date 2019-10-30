@@ -32,7 +32,7 @@
        class="btn btn-info col-3">
         Wyświetl użytkowników posortowanych po wieku
     </a>
-    <a th:href="@{/home/page}"
+    <a th:href="@{/userData/oldestUserWithTelephone}"
        class="btn btn-info col-3">
         Wyświetl najstarszego użytkownika który posiada nr. telefonu
     </a>
@@ -49,8 +49,15 @@
        class="btn btn-info col-3">
         Usuń wszytkich użytkowników
     </a>
-
+    <hr>
 </div>
 
-</body>
+<form action="#" th:action="@{/userData/lastNameSearchCheck}"
+      th:object="${user}" method="GET">
 
+    <input type="text" th:field="*{lastName}"
+           class="form-control mb-4 col-4" placeholder="Nazwisko">
+    <button type="submit" class="btn btn-info col-2">Szukaj</button>
+</form>
+</body>
+</html>
