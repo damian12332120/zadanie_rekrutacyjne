@@ -1,13 +1,13 @@
 package zadanie.Rektutacyjne.entity;
 
-import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvBindByPosition;
+import com.opencsv.bean.CsvCustomBindByPosition;
+import zadanie.Rektutacyjne.csvOpen.LocalDateConverter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
 @Entity
@@ -16,20 +16,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty(message = "login nie może być pusty")
-    @CsvBindByName
+    @CsvBindByPosition(position = 0)
     private String firstName;
 
-    @NotEmpty(message = "login nie może być pusty")
-    @CsvBindByName
+    @CsvBindByPosition(position = 1)
     private String lastName;
 
-    @NotEmpty(message = "login nie może być pusty")
-    @CsvBindByName
+    @CsvCustomBindByPosition(position = 2, converter = LocalDateConverter.class)
     private LocalDate birthDay;
 
-    @Pattern(regexp = "[0-9]{9}")
-    @CsvBindByName
+    @CsvBindByPosition(position = 3)
     private String phoneNo;
 
 
@@ -81,10 +77,10 @@ public class User {
     public String toString() {
         return
                 "id=" + id +
-                ", firstName='" + firstName +
-                ", lastName='" + lastName +
-                ", birthDay=" + birthDay +
-                ", phoneNo='" + phoneNo
+                        ", firstName='" + firstName +
+                        ", lastName='" + lastName +
+                        ", birthDay=" + birthDay +
+                        ", phoneNo='" + phoneNo
                 ;
     }
 }

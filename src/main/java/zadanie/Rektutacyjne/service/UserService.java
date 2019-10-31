@@ -25,4 +25,8 @@ public interface UserService  {
     void deleteById(int id);
 
     List<User> findAll();
+
+    void addUsers(List<User> users);
+
+    Optional<User> findByPhoneNumber(String value);
 }
