@@ -1,4 +1,4 @@
-package zadanie.Rektutacyjne.csvOpen;
+package zadanie.Rektutacyjne.service.csv;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -10,6 +10,7 @@ import zadanie.Rektutacyjne.entity.User;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -19,14 +20,13 @@ import java.util.List;
 @Service
 public class OpenCSVReader {
 
-    private static final String SAMPLE_CSV_FILE_PATH = "src/main/plik.csv";
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public List<User> open() throws DateTimeParseException {
+    public List<User> open(Path fileNameAndPath) throws DateTimeParseException {
         List<User> correctUserList = new ArrayList<>();
         List<User> uncorrectUserList = new ArrayList<>();
         try (
-                Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));
+                Reader reader = Files.newBufferedReader(Paths.get(String.valueOf(fileNameAndPath)));
         ) {
             CsvToBean csvToBean = new CsvToBeanBuilder(reader)
                     .withType(User.class)
@@ -43,8 +43,7 @@ public class OpenCSVReader {
                     uncorrectUserList.add(userInCsv);
                 }
             }
-            logger.info("Added to base "+correctUserList.size()+" users." );
-            logger.info(uncorrectUserList.size() +" objects did not meet the requirements");
+            logger.info(uncorrectUserList.size() +" objects did not meet the requirements "+ this.getClass()+"method open");
         } catch (IOException e1) {
             e1.printStackTrace();
         }

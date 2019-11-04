@@ -2,7 +2,8 @@ package zadanie.Rektutacyjne.entity;
 
 import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvCustomBindByPosition;
-import zadanie.Rektutacyjne.csvOpen.LocalDateConverter;
+import zadanie.Rektutacyjne.service.csv.LocalDateConverter;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

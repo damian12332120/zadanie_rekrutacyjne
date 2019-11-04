@@ -1,8 +1,6 @@
-package zadanie.Rektutacyjne.csvOpen;
+package zadanie.Rektutacyjne.service.csv;
 
 import com.opencsv.bean.AbstractBeanField;
-import com.opencsv.exceptions.CsvConstraintViolationException;
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

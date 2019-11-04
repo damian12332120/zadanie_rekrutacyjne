@@ -1,4 +1,4 @@
-package zadanie.Rektutacyjne.service;
+package zadanie.Rektutacyjne.service.user;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

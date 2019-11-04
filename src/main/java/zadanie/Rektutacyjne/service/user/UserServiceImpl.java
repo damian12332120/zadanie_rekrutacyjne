@@ -1,4 +1,4 @@
-package zadanie.Rektutacyjne.service;
+package zadanie.Rektutacyjne.service.user;
 
 
 import org.slf4j.Logger;
@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import zadanie.Rektutacyjne.dao.UserRepository;
 import zadanie.Rektutacyjne.entity.User;
+import zadanie.Rektutacyjne.service.user.UserService;
 
 import java.util.Comparator;
 import java.util.List;
@@ -59,7 +60,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(int id) {
         userRepository.deleteById(id);
-        logger.info("User has been removed. "+ id);
+        logger.info("User has been removed. " + id);
     }
 
     @Override
@@ -77,7 +78,9 @@ public class UserServiceImpl implements UserService {
         for (User user : users) {
             if (!findByPhoneNumber(user.getPhoneNo()).isPresent()) {
                 userRepository.save(user);
+                logger.info("Added user " + this.getClass()+" method addUsers");
             }
+            logger.info("User is in the database " +this.getClass()+" method addUsers ");
         }
     }
 
