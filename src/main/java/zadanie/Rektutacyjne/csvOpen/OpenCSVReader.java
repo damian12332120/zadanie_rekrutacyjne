@@ -2,6 +2,8 @@ package zadanie.Rektutacyjne.csvOpen;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import zadanie.Rektutacyjne.entity.User;
 
@@ -18,7 +20,7 @@ import java.util.List;
 public class OpenCSVReader {
 
     private static final String SAMPLE_CSV_FILE_PATH = "src/main/plik.csv";
-
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public List<User> open() throws DateTimeParseException {
         List<User> correctUserList = new ArrayList<>();
@@ -41,6 +43,8 @@ public class OpenCSVReader {
                     uncorrectUserList.add(userInCsv);
                 }
             }
+            logger.info("Added to base "+correctUserList.size()+" users." );
+            logger.info(uncorrectUserList.size() +" objects did not meet the requirements");
         } catch (IOException e1) {
             e1.printStackTrace();
         }

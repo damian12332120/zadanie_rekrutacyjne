@@ -1,6 +1,8 @@
 package zadanie.Rektutacyjne.service;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +18,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private UserRepository userRepository;
@@ -48,11 +53,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteAll() {
         userRepository.deleteAll();
+        logger.info("Users have been removed.");
     }
 
     @Override
     public void deleteById(int id) {
         userRepository.deleteById(id);
+        logger.info("User has been removed. "+ id);
     }
 
     @Override
@@ -70,8 +77,6 @@ public class UserServiceImpl implements UserService {
         for (User user : users) {
             if (!findByPhoneNumber(user.getPhoneNo()).isPresent()) {
                 userRepository.save(user);
-            } else {
-                System.out.println("user jest w bazie");
             }
         }
     }

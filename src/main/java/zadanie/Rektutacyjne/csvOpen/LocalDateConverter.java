@@ -3,12 +3,19 @@ package zadanie.Rektutacyjne.csvOpen;
 import com.opencsv.bean.AbstractBeanField;
 import com.opencsv.exceptions.CsvConstraintViolationException;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+
 public class LocalDateConverter extends AbstractBeanField {
+
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
+
     @Override
     protected Object convert(String s) {
 
@@ -17,6 +24,7 @@ public class LocalDateConverter extends AbstractBeanField {
         try {
             parse = LocalDate.parse(s, formatter);
         } catch (DateTimeParseException ignored) {
+
         }
         return parse;
     }
