@@ -10,7 +10,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import zadanie.Rektutacyjne.dao.UserRepository;
 import zadanie.Rektutacyjne.entity.User;
-import zadanie.Rektutacyjne.service.user.UserService;
 
 import java.util.Comparator;
 import java.util.List;
