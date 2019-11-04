@@ -2,6 +2,11 @@ package zadanie.Rektutacyjne.controller.user;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import zadanie.Rektutacyjne.entity.User;
 import zadanie.Rektutacyjne.service.UserService;
 
-import java.util.Optional;
+import java.util.List;
 
 @Controller
 @RequestMapping("/userData")
@@ -36,15 +41,14 @@ public class UserController {
     }
 
     @GetMapping("/sortByAge")
-    public String sortByAge(Model model) {
-        model.addAttribute("users", userService.sortByAgee());
+    public String getEmployees(@PageableDefault(size = 5) Pageable pageable,
+                               Model model) {
+        model.addAttribute("users", userService.findAllPage(pageable));
         return "user/ShowUsers";
     }
 
-
     @GetMapping("/oldestUserWithTelephone")
     public String oldestUserWithTelephone(Model model) {
-        Optional<User> user = userService.oldestUserWithTelephone();
         model.addAttribute("user", userService.oldestUserWithTelephone());
         return "user/oldestUserWithTelephone";
     }
@@ -58,15 +62,18 @@ public class UserController {
     }
 
     @GetMapping("/lastNameSearchCheck")
-    public String lastNameSearch(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("users", userService.lastNameSearch(user.getLastName()));
+    public String lastNameSearch(@PageableDefault(size = 5) Pageable pageable,
+                                 @ModelAttribute("user") User user, Model model) {
+        List<User> list = userService.lastNameSearch(user.getLastName());
+        Page<User> page = new PageImpl<>(list, pageable, list.size());
+        model.addAttribute("users", page);
         return "user/ShowUsers";
     }
 
 
     @GetMapping("/deleteUser")
-    public String deleteUser(Model model) {
-        model.addAttribute("users", userService.findAll());
+    public String deleteUser(@PageableDefault(size = 5) Pageable pageable, Model model) {
+        model.addAttribute("users", userService.findAllPage(pageable));
         return "user/DeleteUser";
     }
 

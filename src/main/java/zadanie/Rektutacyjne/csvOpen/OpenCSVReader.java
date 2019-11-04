@@ -68,6 +68,5 @@ public class OpenCSVReader {
             return user.getPhoneNo().matches("^[0-9]+$");
         }
         return true;
-
     }
 }

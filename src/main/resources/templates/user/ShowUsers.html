@@ -74,7 +74,22 @@
     </table>
     <span th:if="${users.isEmpty()}">Nie ma użytkowników.</span>
 
-</div>
 
+    <div class="pagination-div">
+    <span th:if="${users.hasPrevious()}">
+        <a th:href="@{/userData/sortByAge(page=${users.number-1})}" class="btn btn-info col-1">Poprzednia</a>
+    </span>
+        <th:block th:each="i: ${#numbers.sequence(0, users.totalPages - 1)}">
+            <span th:if="${users.number == i}" class="selected">[[${i}+1]]</span>
+            <span th:unless="${users.number == i}">
+             <a th:href="@{/userData/sortByAge(users=${i},size=${users.size})}">[[${i}+1]]</a>
+        </span>
+        </th:block>
+        <span th:if="${users.hasNext()}">
+        <a th:href="@{/userData/sortByAge(page=${users.number+1})}" class="btn btn-info col-1">Kolejna</a>
+    </span>
+
+    </div>
+</div>
 </body>
 
